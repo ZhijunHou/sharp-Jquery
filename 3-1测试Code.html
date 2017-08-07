@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			
+			
+			$(document).ready(function(){
+				
+				$("a.tooltip").mouseover(function(e){				
+					var $newDiv = $("<div id = 'tooltip'>"+$(this).attr('title')+"</div>");
+					$("body").append($newDiv);
+					$newDiv.css({
+						"position": "absolute",
+						"top": (e.pageY+20)+"px",
+						"left": (e.pageX+10)+"px",
+						"border":"1px black solid",
+						"fontSize":"12px",
+						"backgroundColor":"white"
+						}).show("fade-in");
+					$(this).attr('title','');
+				}).mouseout(function(){
+					$(this).attr('title',$("#tooltip").html());
+					$("#tooltip").remove();
+				}).mousemove(function(e){
+					$("#tooltip").css({
+						"top": (e.pageY+20)+"px",
+						"left": (e.pageX+10)+"px"
+					})
+				})
+				
+				
+			})
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<p><a href="#" title="this is my link tip1" class="tooltip" ">tip1</a></p>
+		<p><a href="#" title="this is my link tip2" class="tooltip">tip2</a></p>
+		<p><a href="#" title="this is attached tip1">attached tip1</a></p>
+		<p><a href="#" title="this is attached tip2">attached tip2</a></p>
+	
+	</body>
+</html>

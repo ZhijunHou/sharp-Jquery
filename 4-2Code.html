@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#panel{
+				width:200px;
+				border:1px solid black;
+			}
+			.head{
+				background-color: darkgray;
+				cursor:pointer;
+			}
+
+			
+		</style>
+		
+		<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+			
+			$().ready(function(){
+				$(".content").hide();
+				$(".head").bind("mouseover",function(){					
+						$(".content").show();															
+				}).bind("mouseout",function(){
+					$(".content").hide();
+				})
+				
+			})
+			
+			
+
+			
+		</script>
+		
+		
+	</head>
+	<body>
+		
+		<div id = "panel">
+			<h5 class = "head">what is jQuery</h5>
+			<div class="content">jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. It is free, 
+				open-source software using the permissive MIT license.
+				Web analysis indicates that it is the most widely deployed JavaScript library by a large margin.</div>
+		</div>
+		
+		
+	</body>
+</html>
+
