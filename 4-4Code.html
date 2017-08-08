@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			div{
+				position: relative;
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				background: darkgrey;
+				cursor: pointer;
+				margin: 20px;
+			}
+			
+			
+		</style>
+		
+		
+		<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				
+//				$("#panel").css("opacity","0.5");
+//				
+//				$("#panel").bind("click",function(){
+//					
+//					$(this).animate({
+//						
+//						left:"+=500px",
+//						height:"200px",
+//						opacity:"1"
+//						
+//					},3000).animate({
+//						
+//						top:"500px",
+//						width:"200px"						
+//						
+//					},3000).fadeOut(1000);
+//					
+//				})
+
+
+				$("#panel").hover(function(){
+					$(this).stop().animate({
+						height:"200px",
+						width:"200px"
+					
+					},2000)
+				},function(){
+				$(this).stop().animate({
+					height:"100px",
+					width:"100px"
+				},2000)});
+				
+
+				$("#panel2").hover(function(){
+					$(this).animate({
+						height:"200px",
+						width:"200px"
+					
+					},2000)
+				},function(){
+				$(this).animate({
+					height:"100px",
+					width:"100px"
+				},2000)});
+
+
+
+				
+			})
+			
+			
+			
+		</script>
+		
+		
+	</head>
+	<body>
+		<div id="panel">panel</div>
+		<div id="panel2">panel2 no stop function</div>
+		
+	</body>
+</html>
