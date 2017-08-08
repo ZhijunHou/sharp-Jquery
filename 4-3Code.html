@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			
+			div{
+				height: 200px;
+				width:200px;
+				border: 1px solid black;
+			}
+			
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				$("div").bind("click",function(){
+					$("body").append("<p>click event</p>");
+				}).bind("click.plugin",function(){
+					$("body").append("<p>click plugin event</p>");
+				})
+			
+				$("input").bind("click",function(){
+					$("div").trigger("click!");
+				})
+			})
+			
+			
+		</script>
+		
+	</head>
+	
+	
+	
+	<body>
+		
+		<div>click here</div>
+		
+
+		<input type="button" value="click"/>
+		
+	</body>
+</html>
