@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			.v_show{
+				width: 680px;
+				height: 170px;
+				border: 1px solid black;
+			}
+			
+			.v_caption{
+				width: 660px;
+				height: 20px;
+				position: relative;
+				top: 5px;
+				left: 10px;
+				background-color: gainsboro;
+			}
+			.v_caption *{
+				float: left;
+			}
+			
+			.v_caption em{
+				float: right;
+				font-size:12px ;
+				position: relative;
+				top: 2px;
+			}
+			
+			.v_caption>span{
+				height: 5px;
+				width: 5px;
+				border-radius: 50%;
+				position: relative;
+				top: 8px;
+				left: 10px;
+				margin-left: 4px;
+				background-color: white;
+			}
+			
+			.cartoon{
+				position: relative;
+				top: 3px;
+				left: 5px;
+			}
+			
+			.prev{
+				height: 15px;
+				width: 15px;
+				background-image:url("img/left.png");
+				background-size:15px 15px;
+				background-repeat: no-repeat;
+				position: relative;
+				left: 30px;
+				top: 3px;
+				cursor: pointer;
+			}
+			
+			.next{
+				height: 15px;
+				width: 15px;
+				background-image:url("img/right.png");
+				background-size:15px 15px;
+				background-repeat: no-repeat;
+				position: relative;
+				left: 35px;
+				top: 3px;
+				cursor: pointer;
+			}
+			
+		
+			.v_caption .current{
+				background-color: cornflowerblue;
+			}
+			
+			.v_content{
+				height: 150px;
+				width: 680px;
+				overflow: hidden;
+				position: relative;
+				top: 8px;
+			}
+			
+			.v_content_list{
+				width: 2720px;
+				height: 150px;
+				position: relative;
+			}
+			
+			.v_content_list ul li{
+				list-style: none;
+				float: left;
+				margin: 10px;
+			}
+			
+			.v_content_list ul li img{
+				height: 80px;
+				width: 150px;
+			}
+			
+			.v_content_list ul li span{
+				font-size: 12px;
+				color: darkgray;
+			}
+			
+			.v_content_list ul li a{
+				font-size: 12px;
+				color: darkgray;
+				text-decoration: none;
+			}
+			
+		</style>
+		                                                                                                                                                                                                                                                                                                                                                     
+		<script src="js/jquery-3.2.1.js"></script>
+		
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				var page = 1;
+				var pageCap = 4;
+				
+				$("span.next").click(function(){
+					$parent=$(this).parents(".v_show");
+					$content = $parent.find(".v_content");
+					$content_list = $parent.find(".v_content_list");
+					var $highlight_span = $(".v_caption>span");
+					var liLen = $content_list.find("li").length;
+					var maxPag = Math.ceil(liLen/pageCap);
+					var content_width = $content.width();
+					$highlight_span.removeClass();
+					
+					if(page == maxPag){
+						$content_list.animate({
+							left:"0px"
+						},1000)
+						page=1;
+					}else{
+						$content_list.animate({
+						left:"+=-"+content_width+"px"					
+						},3000)
+						page++;
+					}				
+					$highlight_span.eq((page-1)).addClass("current");
+				})
+				
+				$("span.prev").click(function(){
+					$parent=$(this).parents(".v_show");
+					$content = $parent.find(".v_content");
+					$content_list = $parent.find(".v_content_list");
+					var $highlight_span = $(".v_caption>span");
+					var liLen = $content_list.find("li").length;
+					var maxPag = Math.ceil(liLen/pageCap);
+					var content_width = $content.width();
+					$highlight_span.removeClass();
+					
+					if(page == 1){
+						$content_list.animate({
+							left:"-"+(maxPag-1)*content_width+"px"
+						},3000)
+						page=maxPag;
+					}else{
+						$content_list.animate({
+						left:"+="+content_width+"px"					
+						},3000)
+						page--;
+					}				
+					$highlight_span.eq((page-1)).addClass("current");
+				})
+				
+				
+				
+				
+			})
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<div class="v_show">
+			
+			<div class="v_caption">
+				<h5 class="cartoon">卡通动漫</h5>
+				<span class="current"></span><span></span><span></span><span></span>
+				<div class="change_btn">
+					<span class="prev"></span>
+					<span class="next"></span>
+				</div>
+				<em>更多>></em>
+			</div>
+			<div class="v_content">				
+				<div class="v_content_list">
+					<ul>
+						<li><a href="#"><img src="img/1.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/2.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/3.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/4.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/5.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/6.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/7.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/8.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>	
+						<li><a href="#"><img src="img/1.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/2.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/3.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/4.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/5.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/6.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/7.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>
+						<li><a href="#"><img src="img/8.jpg"></a><a href="#"><h4>绑架我</h4></a><span>播放<em>57,865</em></span></li>	
+					</ul>
+				</div>				
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
