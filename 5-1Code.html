@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#regForm{
+				position: relative;
+				left: 100px;
+				width: 400px;		
+			}
+			
+			div{
+				margin:10px;
+			}
+			
+			.focus{
+				border: 1px solid darkgray;
+				background: gainsboro;
+			}
+			
+			.bigger,.smaller,.scrolldown,.scrollup{
+				background-color: darkgray;
+				cursor: pointer;
+			}
+			
+			#select1,#select2{
+				margin-left:10px ;
+				margin-bottom: 20px;
+				float: left;
+			}
+			
+			#buttonGro{
+				position: relative;
+				top: 30px;
+				left: 5px;
+				float: left;
+			}
+			
+			#buttonGro input{
+				width: 25px;
+				display: block;
+				margin-bottom: 5px;
+			}
+		</style>
+		
+		<script src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				$(":input").focus(function(){
+					$(this).addClass("focus");
+				}).blur(function(){
+					$(this).removeClass("focus");
+				})
+				
+				
+				var $comment = $("#comment");
+				
+				$(".bigger").click(function(){
+					if(!$comment.is(":animated")){
+					if($comment.height()<300){
+//						$comment.height($comment.height()+50);
+						$comment.animate({
+							height:"+=50"
+							//滚动条向下移动50px
+//							scrollTop:"+=50"
+						},500)
+					}}
+				})
+				
+				$(".smaller").click(function(){
+					if($comment.height()>50){
+//						$comment.height($comment.height()-50);
+						$comment.animate({
+							height:"-=50"
+						},500)
+					}
+				})
+				
+				
+				$(".scrolldown").click(function(){
+					if(!$comment.is(":animated")){
+					if($comment.height()<300){
+//						$comment.height($comment.height()+50);
+						$comment.animate({
+							scrollTop:"+=50"
+						},500)
+					}}
+				})
+				
+				$(".scrollup").click(function(){
+					if(!$comment.is(":animated")){
+						if($comment.height()>50){
+//						$comment.height($comment.height()-50);
+						$comment.animate({
+							scrollTop:"-=50"
+						},500)
+					}}
+				})
+				
+				
+				$("#selAll").click(function(){					
+					$("[name=items]:checkbox").prop("checked",true);
+				})
+				
+				$("#selNo").click(function(){					
+					$("[name=items]:checkbox").prop("checked",false); 
+				})
+				
+				$("#selRev").click(function(){					
+					$("[name=items]:checkbox").each(function(){
+						$(this).prop("checked",!$(this).prop("checked"));
+					})
+				})
+				
+				$("#send").click(function(){
+					var str="您选择的是："
+					$("[name=items]:checkbox").each(function(){
+						if($(this).prop("checked"))
+						str=str+$(this).val()+",";
+					})
+					
+					alert(str);
+				})
+				
+				
+				
+				$("#add").click(function(){
+					$("#select1 option:selected").each(function(){
+						$(this).appendTo($("#select2"));
+					})
+				})
+				
+				$("#addAll").click(function(){
+					var $optionGro = $("#select1 option");
+					$optionGro.appendTo($("#select2"));
+				})
+				
+				$("#select1 option").dblclick(function(){
+					$(this).appendTo($("#select2"));
+				})
+				
+			})
+			
+		</script>
+		
+	</head>
+	<body>
+		<div id="content">
+		<form action="#" method="post" id = "regForm">
+			
+			<fieldset>
+				<legend>个人基本信息</legend>
+				<div>
+					<label for="username">名称：</label>
+					<input type="text" id="username" />
+				</div>
+				<div>
+					<label for="password">密码：</label>
+					<input type="text" id="password" />  
+				</div>
+				<div>
+					<label for="msg">详细信息：</label>
+					<textarea id="msg"></textarea>
+				</div>
+				
+				<div>
+					<span class="bigger">放大</span>
+					<span class="smaller">缩小</span>
+				</div>
+				<div>
+					<span class="scrolldown">scrollDown</span>
+					<span class="scrollup">scrollUp</span>
+				</div>
+				<div>
+					<textarea id="comment" cols="40" rows="8">
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+						多行文本高度变化多行文本高度变化
+					</textarea>
+				</div>
+				
+				
+				你爱好的运动是？<br />
+				<input type="checkbox" name="items" value="足球"/>足球
+				<input type="checkbox" name="items" value="篮球"/>篮球
+				<input type="checkbox" name="items" value="羽毛球"/>羽毛球
+				<input type="checkbox" name="items" value="乒乓球"/>乒乓球
+				<br />
+				<input type="button" value="全选" id="selAll"/>
+				<input type="button" value="全不选" id="selNo"/>
+				<input type="button" value="反选" id="selRev"/>
+				<input type="button" value="提交" id="send"/>
+				<br />
+				<br />
+				
+				<select multiple id = "select1" style="width: 100px;height: 160px;">
+					<option value="1">option 1</option>
+					<option value="2">option 2</option>
+					<option value="3">option 3</option>
+					<option value="4">option 4</option>
+					<option value="5">option 5</option>
+					<option value="6">option 6</option>
+					<option value="7">option 7</option>
+					<option value="8">option 8</option>
+					<option value="9">option 9</option>
+				</select>
+				<div id="buttonGro">
+					<input type="button" value=">|" id="add"/>
+					<input type="button" value=">>" id="addAll"/>
+				</div>
+				
+				<select multiple="multiple" id = "select2" style="width: 100px;height: 160px;"></select>
+				
+			</fieldset>
+			
+			
+		</form>
+		</div>
+		
+	</body>
+</html>
