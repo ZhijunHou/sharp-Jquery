@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			form{
+				position: absolute;
+				top: 50px;
+				left: 100px;
+				height: 200px;
+			}
+			.int{
+				position: relative;
+				left: 50px;
+				top: 50px;
+				margin-bottom: 10px;
+			}
+			
+			.int label{
+				display: inline-block;
+				width: 70px;
+				height: 28px;
+			}
+			
+			.sub{
+				position: relative;
+				top: 50px;
+				left: 120px;
+			}
+			
+			.formtiperror{
+				padding-left: 19px;
+				display: inline-block;
+				background: url(img/error.png) no-repeat;
+				background-size:17px 17px;
+				position: relative;
+				left: 5px;
+			}
+			
+			.formtipok{
+				padding-left: 19px;
+				display: inline-block;
+				background: url(img/ok.png) no-repeat;
+				background-size:17px 17px;
+				position: relative;
+				left: 5px;
+			}
+			
+			.high{
+				color: red;
+			}
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				$(".required").each(function(){
+					var $star = $("<strong class='high'>*</strong>");
+					$star.insertAfter($(this));
+				})
+				
+				
+				$(".int input").blur(function(){					
+					if($(this).is("#username")){
+						var nameTxt = $(this).val();
+						if(nameTxt.length<6){
+							$(this).next("strong").remove();
+							var errorMsg = "请输入长度大于6的用户名";
+							$(this).next("span").remove();
+							$(this).after($("<span class='formtiperror'>"+errorMsg+"</span>"));							
+						}else{
+							$(this).next("strong").remove();
+							var okMsg = "用户名输入正确";
+							$(this).after($("<span class='formtipok'>"+okMsg+"</span>"));	
+						}
+					}
+					
+					if($(this).is("#email")){
+						
+						var regEmail = /[a-zA-Z0-9]+@[a-zA-Z]+\.[(com)(cn)]/gi;
+						var emailVal = $(this).val();
+						
+						if(emailVal==""||!regEmail.exec(emailVal)){
+							$(this).next("strong").remove();
+							$(this).next("span").remove();
+							var errorMsg = "请输入正确的邮箱地址";
+							$(this).after($("<span class='formtiperror'>"+errorMsg+"</span>"));	
+						}else{
+							$(this).next("strong").remove();
+							var okMsg = "邮箱地址输入正确";
+							$(this).after($("<span class='formtipok'>"+okMsg+"</span>"));	
+						}
+						
+					}
+					
+				})
+				
+				
+				$("#send").click(function(){
+					
+					var res = $("form .required:input").trigger("blur");
+					var num = $("form .onError").length;
+					alert(num);
+					
+				})
+			
+			})
+			
+			
+		</script>
+		
+		
+	</head>
+	<body>
+		<form method="post">
+			
+			<div class="int">
+				<label for="username">用户名:</label>
+				<input type="text" id="username" class="required"/>
+			</div>
+			<div class="int">
+				<label for="email">邮箱:</label>
+				<input type="text" id="email" class="required"/>
+			</div>
+			<div class="int">
+				<label for="personinfo">个人资料:</label>
+				<input type="text" id="personinfo"/>
+			</div>
+			
+			<div class="sub"> 
+				<input type="submit" value="提交" id="send" />
+				<input type="reset" value="重置" id="res" />
+			</div>
+			
+		</form>
+		
+		
+	</body>
+</html>
