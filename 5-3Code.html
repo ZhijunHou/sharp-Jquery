@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			
+			td {
+				font: normal 12px Arial;
+				padding: 2px;
+				width: 100px;
+			}
+			
+			th {
+				font: bold 12px Arial;
+				text-align: left;
+				padding: 4px;
+				border-bottom: 1px solid #333;
+			}
+			
+			tr{
+				cursor: pointer;
+			}
+			
+			.even {
+				background: lightpink;
+			}
+			/* 偶数行样式*/
+			
+			.odd {
+				background: darkseagreen;
+			}
+			/* 奇数行样式*/
+			
+			.selected {
+				background: #FF6500;
+				color: #fff;
+			}
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				
+//				$("table tr:even").addClass("even");
+//				$("table tr:odd").addClass("odd");
+				
+//				$("table tbody>tr:even").addClass("even");
+//				$("table tbody>tr:odd").addClass("odd");
+				
+//				$("table tbody>tr:contains('王五')").addClass("selected");
+//				$("table tbody>tr:contains('王五')").find(":radio").prop("checked",true);
+//				
+//				$("table tbody>tr").each(function(){
+//					$(this).click(function(){
+//						$(this).addClass("selected")
+//						.find(":radio").prop("checked",true).end()
+//						.siblings().removeClass("selected");					
+//					})
+//				})
+
+				$("table tbody>tr:contains('王五')").addClass("selected");
+				$("table tbody>tr:contains('王五')").find(":checkbox").prop("checked",true);
+				
+				$("table tbody>tr").click(function(){
+					if($(this).find(":checkbox").prop("checked")){
+						$(this).removeClass("selected");
+						$(this).find(":checkbox").prop("checked",false);
+					}else{
+						$(this).addClass("selected");
+						$(this).find(":checkbox").prop("checked",true);
+					}
+						
+					
+				})
+				
+			})
+			
+			
+		</script>
+		
+	</head>
+
+	<body>
+		<!--<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>暂住地</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>张山</td>
+					<td>男</td>
+					<td>浙江宁波</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>李四</td>
+					<td>女</td>
+					<td>浙江杭州</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>王五</td>
+					<td>男</td>
+					<td>湖南长沙</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>找六</td>
+					<td>男</td>
+					<td>浙江温州</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>Rain</td>
+					<td>男</td>
+					<td>浙江杭州</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="sel"/></td>
+					<td>MAXMAN</td>
+					<td>女</td>
+					<td>浙江杭州</td>
+				</tr>
+			</tbody>
+		</table>-->
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>暂住地</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>张山</td>
+					<td>男</td>
+					<td>浙江宁波</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>李四</td>
+					<td>女</td>
+					<td>浙江杭州</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>王五</td>
+					<td>男</td>
+					<td>湖南长沙</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>找六</td>
+					<td>男</td>
+					<td>浙江温州</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>Rain</td>
+					<td>男</td>
+					<td>浙江杭州</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="sel"/></td>
+					<td>MAXMAN</td>
+					<td>女</td>
+					<td>浙江杭州</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+
+</html>
